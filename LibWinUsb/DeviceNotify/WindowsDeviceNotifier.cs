@@ -112,7 +112,7 @@ namespace LibUsbDotNet.DeviceNotify
         private void OnDeviceChange(ref Message m)
         {
             if (!mEnabled) return;
-            if (m.LParam.ToInt32() != 0)
+            if (m.LParam.ToInt64() != 0)
             {
                 EventHandler<DeviceNotifyEventArgs> temp = OnDeviceNotify;
                 if (!ReferenceEquals(temp, null))
@@ -125,7 +125,7 @@ namespace LibUsbDotNet.DeviceNotify
                         case DeviceType.Port:
                         case DeviceType.Volume:
                         case DeviceType.DeviceInterface:
-                            args = new WindowsDeviceNotifyEventArgs(hdr, m.LParam, (EventType) m.WParam.ToInt32());
+                            args = new WindowsDeviceNotifyEventArgs(hdr, m.LParam, (EventType) m.WParam.ToInt64());
                             break;
                         default:
                             args = null;
